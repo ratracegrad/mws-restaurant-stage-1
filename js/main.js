@@ -1,8 +1,8 @@
 let restaurants,
     neighborhoods,
-    cuisines
-var map
-var markers = []
+    cuisines;
+var map;
+var markers = [];
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -10,6 +10,7 @@ var markers = []
 document.addEventListener('DOMContentLoaded', (event) => {
     fetchNeighborhoods();
     fetchCuisines();
+    addServiceWorker();
 });
 
 /**
@@ -81,7 +82,7 @@ window.initMap = () => {
         scrollwheel: false
     });
     updateRestaurants();
-}
+};
 
 /**
  * Update page and map for current restaurants.
@@ -104,7 +105,7 @@ updateRestaurants = () => {
             fillRestaurantsHTML();
         }
     })
-}
+};
 
 /**
  * Clear current restaurants, their HTML and remove their map markers.
@@ -119,7 +120,7 @@ resetRestaurants = (restaurants) => {
     self.markers.forEach(m => m.setMap(null));
     self.markers = [];
     self.restaurants = restaurants;
-}
+};
 
 /**
  * Create all restaurants HTML and add them to the webpage.
@@ -130,7 +131,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
         ul.append(createRestaurantHTML(restaurant));
     });
     addMarkersToMap();
-}
+};
 
 /**
  * Create restaurant HTML.
@@ -159,10 +160,10 @@ createRestaurantHTML = (restaurant) => {
     const more = document.createElement('a');
     more.innerHTML = 'View Details';
     more.href = DBHelper.urlForRestaurant(restaurant);
-    li.append(more)
+    li.append(more);
 
     return li
-}
+};
 
 /**
  * Add markers for current restaurants to the map.
@@ -176,4 +177,21 @@ addMarkersToMap = (restaurants = self.restaurants) => {
         });
         self.markers.push(marker);
     });
-}
+};
+
+
+/**
+ * Add service worker.
+ */
+addServiceWorker = () => {
+    if ('serviceWorker' in navigator) {
+        console.log('CLIENT: service worker registration in progress.');
+        navigator.serviceWorker.register('../service-worker.js').then(function() {
+            console.log('CLIENT: service worker registration complete.');
+        }, function(err) {
+            console.log('CLIENT: service worker registration failure.', err);
+        });
+    } else {
+        console.log('CLIENT: service worker is not supported.');
+    }
+};
