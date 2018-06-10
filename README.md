@@ -22,7 +22,7 @@ This website provides information on restaurants located in the New York, NY met
 The main page of the website provides a google map that shows all the restaurant locations with a pin. Below
 the map is a list of all restaurants that I currently have in my database.
 Here is an example of what the home page of the website looks like:
-
+![Homepage](/screenshots/homepage.png)
 
 ## Getting Started
 
