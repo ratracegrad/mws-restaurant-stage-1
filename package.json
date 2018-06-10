@@ -1,0 +1,44 @@
+{
+  "name": "mws-restaurant-stage-1",
+  "version": "1.0.0",
+  "description": "Demonstration of a responsive website with accessibility designs",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .html,.js --fix",
+    "start": "python -m SimpleHTTPServer 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ratracegrad/mws-restaurant-stage-1.git"
+  },
+  "keywords": [
+    "responsive",
+    "pwa",
+    "progressive",
+    "web",
+    "app",
+    "responsive",
+    "design",
+    "accessibility",
+    "udacity",
+    "google",
+    "google",
+    "scholarship"
+  ],
+  "author": "Jennifer Bland",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ratracegrad/mws-restaurant-stage-1/issues"
+  },
+  "homepage": "https://github.com/ratracegrad/mws-restaurant-stage-1#readme",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-html": "^4.0.3",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0"
+  }
+}

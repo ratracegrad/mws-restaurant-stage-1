@@ -1,13 +1,15 @@
+/* eslint-disable no-unused-vars */
 let restaurants,
     neighborhoods,
     cuisines;
 var map;
 var markers = [];
+/* eslint-enable no-unused-vars */
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     fetchNeighborhoods();
     fetchCuisines();
     addServiceWorker();
@@ -25,7 +27,7 @@ fetchNeighborhoods = () => {
             fillNeighborhoodsHTML();
         }
     });
-}
+};
 
 /**
  * Set neighborhoods HTML.
@@ -38,7 +40,7 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
         option.value = neighborhood;
         select.append(option);
     });
-}
+};
 
 /**
  * Fetch all cuisines and set their HTML.
@@ -52,7 +54,7 @@ fetchCuisines = () => {
             fillCuisinesHTML();
         }
     });
-}
+};
 
 /**
  * Set cuisines HTML.
@@ -66,7 +68,7 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
         option.value = cuisine;
         select.append(option);
     });
-}
+};
 
 /**
  * Initialize Google map, called from HTML.
@@ -74,12 +76,12 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 window.initMap = () => {
     let loc = {
         lat: 40.722216,
-        lng: -73.987501
+        lng: -73.987501,
     };
     self.map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: loc,
-        scrollwheel: false
+        scrollwheel: false,
     });
     updateRestaurants();
 };
@@ -104,7 +106,7 @@ updateRestaurants = () => {
             resetRestaurants(restaurants);
             fillRestaurantsHTML();
         }
-    })
+    });
 };
 
 /**
@@ -162,7 +164,7 @@ createRestaurantHTML = (restaurant) => {
     more.href = DBHelper.urlForRestaurant(restaurant);
     li.append(more);
 
-    return li
+    return li;
 };
 
 /**
@@ -173,7 +175,7 @@ addMarkersToMap = (restaurants = self.restaurants) => {
         // Add marker to the map
         const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
         google.maps.event.addListener(marker, 'click', () => {
-            window.location.href = marker.url
+            window.location.href = marker.url;
         });
         self.markers.push(marker);
     });

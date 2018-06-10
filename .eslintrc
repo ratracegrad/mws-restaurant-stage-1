@@ -1,0 +1,41 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "plugins": [
+    "html"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "no-console": ["error", { "allow": ["log", "warn", "error"] } ],
+    "semi": "error",
+    "comma-dangle": ["error", "always-multiline"]
+  },
+  "globals": {
+    "google": true,
+    "fetchNeighborhoods": true,
+    "fetchCuisines": true,
+    "fillNeighborhoodsHTML": true,
+    "DBHelper": true,
+    "addServiceWorker": true,
+    "fillCuisinesHTML": true,
+    "updateRestaurants": true,
+    "fillRestaurantsHTML": true,
+    "resetRestaurants": true,
+    "createRestaurantHTML": true,
+    "addMarkersToMap": true,
+    "fetchRestaurantFromURL": true,
+    "fillBreadcrumb": true,
+    "getParameterByName": true,
+    "fillRestaurantHTML": true,
+    "fillRestaurantHoursHTML": true,
+    "fillReviewsHTML": true,
+    "createReviewHTML": true
+  }
+}

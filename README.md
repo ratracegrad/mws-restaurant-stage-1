@@ -1,28 +1,58 @@
-# Mobile Web Specialist Certification Course
+# Restaurant Review
 ---
-#### _Three Stage Course Material Project - Restaurant Reviews_
 
-## Project Overview: Stage 1
+This website is a demonstration of best practices for building a responsive website that includes
+accessibility access. This website was created as a project for the Udacity Mobile Web Specialist Nanodegree
+which I am completing because I won a Google Scholarship.
 
-For the **Restaurant Reviews** projects, you will incrementally convert a static webpage to a mobile-ready web application. In **Stage One**, you will take a static design that lacks accessibility and convert the design to be responsive on different sized displays and accessible for screen reader use. You will also add a service worker to begin the process of creating a seamless offline experience for your users.
+## Table of Contents
 
-### Specification
+1. [Live Demo](#live demo)
+1. [Getting Started](#getting started)
+1. [Author](#author)
+1. [Contributing](#contributing)
+1. [Style Guide](#style guide)
+1. [License](#license)
 
-You have been provided the code for a restaurant reviews website. The code has a lot of issues. It’s barely usable on a desktop browser, much less a mobile device. It also doesn’t include any standard accessibility features, and it doesn’t work offline at all. Your job is to update the code to resolve these issues while still maintaining the included functionality. 
+## Live Demo
+I have a [live demo](https://restaurant-reviews-jb.firebaseapp.com/) of this website that you can view.
 
-### What do I do from here?
-
-1. In this folder, start up a simple HTTP server to serve up the site files on your local computer. Python has some simple tools to do this, and you don't even need to know Python. For most people, it's already installed on your computer. 
-
-In a terminal, check the version of Python you have: `python -V`. If you have Python 2.x, spin up the server with `python -m SimpleHTTPServer 8000` (or some other port, if port 8000 is already in use.) For Python 3.x, you can use `python3 -m http.server 8000`. If you don't have Python installed, navigate to Python's [website](https://www.python.org/) to download and install the software.
-
-2. With your server running, visit the site: `http://localhost:8000`, and look around for a bit to see what the current experience looks like.
-3. Explore the provided code, and make start making a plan to implement the required features in three areas: responsive design, accessibility and offline use.
-4. Write code to implement the updates to get this site on its way to being a mobile-ready website.
-
-### Note about ES6
-
-Most of the code in this project has been written to the ES6 JavaScript specification for compatibility with modern web browsers and future proofing JavaScript code. As much as possible, try to maintain use of ES6 in any additional JavaScript you write. 
-
+## Website Overview
+This website provides information on restaurants located in the New York, NY metro area.
+The main page of the website provides a google map that shows all the restaurant locations with a pin. Below
+the map is a list of all restaurants that I currently have in my database.
+Here is an example of what the home page of the website looks like:
 
 
+## Getting Started
+
+### Installing Dependencies
+
+You will need to clone this repo with this command:
+```git clone https://github.com/ratracegrad/mws-restaurant-stage-1.git```
+
+After cloning you will need to change into the directory holding the source code with the command:
+```cd mws-restaurant-stage-1```
+
+From within the root directory you will need to install the dependencies with the command:
+```npm install```
+
+### Linting
+I have included a script to lint the code to verify it passes standards. You can run this script with the command:
+```npm run lint``` 
+
+## Author
+* **Jennifer Bland** 
+    * [Website](https://www.jenniferbland.com)
+    * [Twitter](https://twitter.com/ratracegrad)
+    * [LinkedIn](https://www.linkedin.com/in/ratracegrad/)
+    * [Github](https://github.com/ratracegrad)
+
+## Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## Style Guide
+If you are interested in contributing to this project please read my [style guide](STYLE-GUIDE.md) first.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

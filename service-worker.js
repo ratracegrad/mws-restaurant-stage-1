@@ -17,7 +17,7 @@ var offlineFundamentals = [
     'js/main.js',
     'js/dbhelper.js',
     'js/restaurant_info.js',
-    'img/icon.png'
+    'img/icon.png',
 ];
 
 /* The install event fires when the service worker is first installed.
@@ -152,8 +152,8 @@ self.addEventListener("fetch", function(event) {
                         status: 503,
                         statusText: 'Service Unavailable',
                         headers: new Headers({
-                            'Content-Type': 'text/html'
-                        })
+                            'Content-Type': 'text/html',
+                        }),
                     });
                 }
             })
