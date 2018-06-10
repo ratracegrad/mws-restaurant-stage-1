@@ -1,5 +1,5 @@
 # Restaurant Review
----
+
 
 This website is a demonstration of best practices for building a responsive website that includes
 accessibility access. This website was created as a project for the Udacity Mobile Web Specialist Nanodegree
@@ -14,6 +14,8 @@ which I am completing because I won a Google Scholarship.
 1. [Style Guide](#style guide)
 1. [License](#license)
 
+---
+
 ## Live Demo
 I have a [live demo](https://restaurant-reviews-jb.firebaseapp.com/) of this website that you can view.
 
@@ -23,6 +25,14 @@ The main page of the website provides a google map that shows all the restaurant
 the map is a list of all restaurants that I currently have in my database.
 Here is an example of what the home page of the website looks like:
 ![Homepage](/screenshots/homepage.png)
+
+If you click on any restaurant, you will be taken to a detail page. The detail page will show the location of the restaurant
+on a map, their hours of operation, and any reviews that have been left for the restaurant. Here is what the details page 
+looks like for a restaurant:
+![Detail Page](/screenshots/details.png)
+
+Also on the details page are any reviews that have been left for that restaurant. Here is what the reviews look like:
+![Reviews](/screenshots/reviews.png)
 
 ## Getting Started
 
