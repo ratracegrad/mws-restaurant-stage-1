@@ -19,20 +19,28 @@ which I am completing because I won a Google Scholarship.
 ## Live Demo
 I have a [live demo](https://restaurant-reviews-jb.firebaseapp.com/) of this website that you can view.
 
+---
 ## Website Overview
 This website provides information on restaurants located in the New York, NY metro area.
 The main page of the website provides a google map that shows all the restaurant locations with a pin. Below
 the map is a list of all restaurants that I currently have in my database.
 Here is an example of what the home page of the website looks like:
+
 ![Homepage](/screenshots/homepage.png)
+
 
 If you click on any restaurant, you will be taken to a detail page. The detail page will show the location of the restaurant
 on a map, their hours of operation, and any reviews that have been left for the restaurant. Here is what the details page 
 looks like for a restaurant:
+
 ![Detail Page](/screenshots/details.png)
 
+
 Also on the details page are any reviews that have been left for that restaurant. Here is what the reviews look like:
+
 ![Reviews](/screenshots/reviews.png)
+
+---
 
 ## Getting Started
 
@@ -51,6 +59,8 @@ From within the root directory you will need to install the dependencies with th
 I have included a script to lint the code to verify it passes standards. You can run this script with the command:
 ```npm run lint``` 
 
+---
+
 ## Author
 * **Jennifer Bland** 
     * [Website](https://www.jenniferbland.com)
@@ -58,11 +68,17 @@ I have included a script to lint the code to verify it passes standards. You can
     * [LinkedIn](https://www.linkedin.com/in/ratracegrad/)
     * [Github](https://github.com/ratracegrad)
 
+---
+
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
+---
+
 ## Style Guide
 If you are interested in contributing to this project please read my [style guide](STYLE-GUIDE.md) first.
+
+---
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
