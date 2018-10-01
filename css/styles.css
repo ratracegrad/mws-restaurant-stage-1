@@ -127,6 +127,16 @@ nav h1 a {
     padding: 20px 0;
 }
 
+.filter-options div {
+    display: inline-block;
+    margin: 10px;
+}
+
+.filter-options label {
+    margin: 10px;
+    color: white;
+}
+
 .filter-options h2 {
     color: white;
     font-size: 1rem;
