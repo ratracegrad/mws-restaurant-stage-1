@@ -10,7 +10,7 @@ let version = 'reviews-v2';
    during the installation process. If any resource fails to be downloaded,
    then the service worker won't be installed either.
 */
-var offlineFundamentals = [
+let offlineFundamentals = [
     '',
     'css/styles.css',
     'js/main.js',

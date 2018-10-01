@@ -36,6 +36,10 @@
     "fillRestaurantHTML": true,
     "fillRestaurantHoursHTML": true,
     "fillReviewsHTML": true,
-    "createReviewHTML": true
+    "createReviewHTML": true,
+    "initMap": true,
+    "restaurant": true,
+    "restaurants": true,
+    "neighborhoods": true
   }
 }
