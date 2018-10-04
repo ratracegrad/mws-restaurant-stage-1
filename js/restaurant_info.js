@@ -2,6 +2,77 @@ let restaurant;
 var newMap;
 
 /**
+ * Wait for user to click button to add a review
+ */
+const modal = document.getElementById('reviewModal');
+const closeModalBtn = document.getElementById('closeModal');
+const saveModalBtn = document.getElementById('saveModal');
+const reviewBtn = document.getElementById('reviewBtn');
+
+function closeModal() {
+    modal.style.display = "none";
+}
+
+reviewBtn.addEventListener('click', () => {
+    modal.style.display = "block";
+
+    // don't allow user to click outside the modal
+    window.onclick = function() {
+       // ignore click
+    };
+});
+
+closeModalBtn.addEventListener('click', () => {
+    closeModal();
+});
+
+saveModalBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    // TODO validate form
+
+    const reviewForm = document.forms['reviewForm'];
+    const errorMessages = [];
+
+    // check if name is empty
+    if (!reviewForm['name'].value) {
+        errorMessages.push('* Please enter your name');
+    }
+
+    // check if review is empty
+    if(!reviewForm['review'].value) {
+        errorMessages.push('* Please enter your review');
+    }
+
+    // get checked radio value
+    let isChecked = false;
+    for (let i=0; i < reviewForm['stars'].length; i++) {
+        if(reviewForm['stars'][i].checked) {
+            isChecked = true; // Found a checked radio button!
+            break; // No need to continue the search
+        }
+    }
+    if (!isChecked) {
+        errorMessages.push('* Please select a rating');
+    }
+
+    // display error if there are any
+    let errorBox = document.getElementById('errorMessages');
+    if (errorMessages.length) {
+        let messageString = '<ul>';
+        for(let i = 0; i < errorMessages.length; i++) {
+            messageString += '<li>' + errorMessages[i] + '</li>';
+        }
+        messageString += '</ul>';
+        errorBox.innerHTML = messageString;
+    } else {
+        errorBox.innerHTML = '';
+        closeModal();
+    }
+
+});
+
+
+/**
  * Initialize map as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -73,7 +144,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
     const image = document.getElementById('restaurant-img');
     image.className = 'restaurant-img';
-    image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    image.src = DBHelper.imageUrlForRestaurantDetail(restaurant);
 
     const cuisine = document.getElementById('restaurant-cuisine');
     cuisine.innerHTML = restaurant.cuisine_type;
