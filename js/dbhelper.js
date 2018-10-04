@@ -150,7 +150,14 @@ class DBHelper {
     static imageUrlForRestaurant(restaurant) {
         if (restaurant && restaurant.photograph) {
             return (`/dist/${restaurant.photograph}-200px.jpg`);
-            // return (`/img/${restaurant.photograph}.jpg`);
+        } else {
+            return '/img/noPhotoFound.png';
+        }
+    }
+
+    static imageUrlForRestaurantDetail(restaurant) {
+        if (restaurant && restaurant.photograph) {
+            return (`/dist/${restaurant.photograph}-500px.jpg`);
         } else {
             return '/img/noPhotoFound.png';
         }
