@@ -104,9 +104,8 @@ saveModalBtn.addEventListener('click', (event) => {
 /**
  * Initialize map as soon as the page is loaded.
  */
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     initMap();
-    getReviews();
 });
 
 /**
@@ -241,15 +240,13 @@ fillReviewsHTML = () => {
             return response.json();
         })
         .then(reviews => {
-            console.log('success getting reviews', reviews);
             const ul = document.getElementById('reviews-list');
             reviews.forEach(review => {
                 ul.appendChild(createReviewHTML(review));
             });
             container.appendChild(ul);
         })
-        .catch(error => {
-            console.log('failure getting reviews', error);
+        .catch(() => {
             const noReviews = document.createElement('p');
             noReviews.innerHTML = 'No reviews yet!';
             container.appendChild(noReviews);

@@ -3,7 +3,33 @@
 console.log('WORKER: executing.');
 
 let version = 'reviews-v2';
-let idb; // = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+let idbVersion = 'test1';
+
+let db;
+let dbReq = indexedDB.open(idbVersion, 1);
+console.log('dbReq', dbReq);
+
+dbReq.onupgradeneeded = function(event) {
+    console.log('onupgradeneeded', event.target);
+    // Set the db variable to our database so we can use it!
+    db = event.target.result;
+
+    // Create an object store named notes. Object stores
+    // in databases are where data are stored.
+    let restaurants = db.createObjectStore('restaurants', {autoIncrement: true});
+};
+
+dbReq.onsuccess = function(event) {
+    console.log('onsuccess', event.target);
+    db = event.target.result;
+};
+
+dbReq.onerror = function(event) {
+    console.log('onerror', event.target);
+    console.log('error opening database ' + event.target.errorCode);
+};
+
+
 let offlineFundamentals = [
     '/',
     'index.html',
@@ -64,23 +90,23 @@ self.addEventListener("install", event => {
 self.addEventListener("fetch", event => {
     console.log('WORKER: fetch event in progress.');
     if (event.request.method !== 'GET') {
-        console.log('WORKER: fetch event ignored.', event.request.method, event.request.url);
+        // console.log('WORKER: fetch event ignored.', event.request.method, event.request.url);
         return;
     }
     event.respondWith(
         caches
             .match(event.request)
             .then(cached => {
-                var networked = fetch(event.request)
+                let networked = fetch(event.request)
                     .then(fetchedFromNetwork, unableToResolve)
                     .catch(unableToResolve);
-                console.log('WORKER: fetch event', cached ? '(cached)' : '(network)', event.request.url);
+                // console.log('WORKER: fetch event', cached ? '(cached)' : '(network)', event.request.url);
                 return cached || networked;
 
                 function fetchedFromNetwork(response) {
-                    var cacheCopy = response.clone();
+                    let cacheCopy = response.clone();
 
-                    console.log('WORKER: fetch response from network.', event.request.url);
+                    // console.log('WORKER: fetch response from network.', event.request.url);
 
                     caches
                         .open(version + 'pages')
@@ -88,13 +114,13 @@ self.addEventListener("fetch", event => {
                             return cache.put(event.request, cacheCopy);
                         })
                         .then(() => {
-                            console.log('WORKER: fetch response stored in cache.', event.request.url);
+                            // console.log('WORKER: fetch response stored in cache.', event.request.url);
                         });
                     return response;
                 }
 
                 function unableToResolve () {
-                    console.log('WORKER: fetch request failed in both cache and network.');
+                    // console.log('WORKER: fetch request failed in both cache and network.');
                     return new Response('<h1>Service Unavailable</h1>', {
                         status: 503,
                         statusText: 'Service Unavailable',
