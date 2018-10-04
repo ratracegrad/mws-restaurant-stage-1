@@ -40,6 +40,7 @@
     "initMap": true,
     "restaurant": true,
     "restaurants": true,
-    "neighborhoods": true
+    "neighborhoods": true,
+    "formatReviewDate": true
   }
 }
