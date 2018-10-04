@@ -9,15 +9,16 @@ class DBHelper {
      */
     static get DATABASE_URL() {
         const port = 1337; // Change this to your server port
-        return `http://localhost:${port}/restaurants`;
+        return `http://localhost:${port}`;
     }
+
 
     /**
      * Fetch all restaurants.
      */
 
     static fetchRestaurants(callback) {
-        fetch(DBHelper.DATABASE_URL)
+        fetch(`${DBHelper.DATABASE_URL}/restaurants`)
             .then(response => {
                 return response.json();
             })
