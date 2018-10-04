@@ -28,18 +28,21 @@ closeModalBtn.addEventListener('click', () => {
 
 saveModalBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    // TODO validate form
 
     const reviewForm = document.forms['reviewForm'];
-    const errorMessages = [];
+    let errorMessages = [];
+    let name = reviewForm['name'].value;
+    let comments = reviewForm['review'].value;
+    let rating;
+    const id = getParameterByName('id');
 
     // check if name is empty
-    if (!reviewForm['name'].value) {
+    if (!name) {
         errorMessages.push('* Please enter your name');
     }
 
     // check if review is empty
-    if(!reviewForm['review'].value) {
+    if(!comments) {
         errorMessages.push('* Please enter your review');
     }
 
@@ -48,6 +51,7 @@ saveModalBtn.addEventListener('click', (event) => {
     for (let i=0; i < reviewForm['stars'].length; i++) {
         if(reviewForm['stars'][i].checked) {
             isChecked = true; // Found a checked radio button!
+            rating = reviewForm['stars'][i].value;
             break; // No need to continue the search
         }
     }
@@ -66,7 +70,32 @@ saveModalBtn.addEventListener('click', (event) => {
         errorBox.innerHTML = messageString;
     } else {
         errorBox.innerHTML = '';
-        closeModal();
+
+        let data = JSON.stringify({
+            "restaurant_id": id,
+            "name": name,
+            "rating": rating,
+            "comments": comments,
+        });
+        fetch(`${DBHelper.DATABASE_URL}/reviews/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: data,
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(payload => {
+                console.log('success', payload);
+                closeModal();
+            })
+            .catch(error => {
+                console.log('failure', error);
+                closeModal();
+            });
+
     }
 
 });
@@ -77,6 +106,7 @@ saveModalBtn.addEventListener('click', (event) => {
  */
 document.addEventListener('DOMContentLoaded', (event) => {
     initMap();
+    getReviews();
 });
 
 /**
@@ -180,23 +210,50 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 /**
  * Create all reviews HTML and add them to the webpage.
  */
-fillReviewsHTML = (reviews = self.restaurant.reviews) => {
+// fillReviewsHTML = (reviews = self.restaurant.reviews) => {
+//     const container = document.getElementById('reviews-container');
+//     const title = document.createElement('h2');
+//     title.innerHTML = 'Reviews';
+//     container.appendChild(title);
+//
+//     if (!reviews) {
+//         const noReviews = document.createElement('p');
+//         noReviews.innerHTML = 'No reviews yet!';
+//         container.appendChild(noReviews);
+//         return;
+//     }
+//     const ul = document.getElementById('reviews-list');
+//     reviews.forEach(review => {
+//         ul.appendChild(createReviewHTML(review));
+//     });
+//     container.appendChild(ul);
+// };
+fillReviewsHTML = () => {
+    // TODO fetch all the reviews
+    const id = getParameterByName('id');
     const container = document.getElementById('reviews-container');
     const title = document.createElement('h2');
     title.innerHTML = 'Reviews';
     container.appendChild(title);
 
-    if (!reviews) {
-        const noReviews = document.createElement('p');
-        noReviews.innerHTML = 'No reviews yet!';
-        container.appendChild(noReviews);
-        return;
-    }
-    const ul = document.getElementById('reviews-list');
-    reviews.forEach(review => {
-        ul.appendChild(createReviewHTML(review));
-    });
-    container.appendChild(ul);
+    fetch(`${DBHelper.DATABASE_URL}/reviews/?restaurant_id=${id}`)
+        .then(response => {
+            return response.json();
+        })
+        .then(reviews => {
+            console.log('success getting reviews', reviews);
+            const ul = document.getElementById('reviews-list');
+            reviews.forEach(review => {
+                ul.appendChild(createReviewHTML(review));
+            });
+            container.appendChild(ul);
+        })
+        .catch(error => {
+            console.log('failure getting reviews', error);
+            const noReviews = document.createElement('p');
+            noReviews.innerHTML = 'No reviews yet!';
+            container.appendChild(noReviews);
+        });
 };
 
 /**
@@ -209,7 +266,8 @@ createReviewHTML = (review) => {
     li.appendChild(name);
 
     const date = document.createElement('p');
-    date.innerHTML = review.date;
+
+    date.innerHTML = formatReviewDate(review.createdAt);
     li.appendChild(date);
 
     const rating = document.createElement('p');
@@ -221,6 +279,14 @@ createReviewHTML = (review) => {
     li.appendChild(comments);
 
     return li;
+};
+
+formatReviewDate = (time) => {
+    let dt = new Date(time);
+    let yr = dt.getFullYear();
+    let mth = dt.getMonth();
+    let dy = dt.getDate();
+    return `${mth}/${dy}/${yr}`;
 };
 
 /**
